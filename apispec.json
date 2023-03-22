@@ -1,0 +1,354 @@
+{
+   "openapi": "3.0.3",
+   "info": {
+      "title": "User RESTful API",
+      "description": "API Spec for User RESTful API",
+      "version": "1.0.0"
+   },
+   "servers": [
+      {
+         "url": "http://localhost:8080/v1"
+      }
+   ],
+   "paths": {
+      "/users": {
+         "get": {
+            "tags": [
+               "User API"
+            ],
+            "description": "List all Users",
+            "summary": "List all Users",
+            "security": [
+               {
+                  "UserAuth": []
+               }
+            ],
+            "responses": {
+               "200": {
+                  "description": "Success get all Users",
+                  "content": {
+                     "application/json": {
+                        "schema": {
+                           "type": "object",
+                           "properties": {
+                              "code": {
+                                 "type": "number"
+                              },
+                              "status": {
+                                 "type": "string"
+                              },
+                              "data": {
+                                 "$ref": "#/components/schemas/User"
+                              }
+                           }
+                        }
+                     }
+                  }
+               }
+            }
+         },
+         "post": {
+            "tags": [
+               "User API"
+            ],
+            "description": "Create new User",
+            "summary": "Create new User",
+            "security": [
+               {
+                  "UserAuth": []
+               }
+            ],
+            "requestBody": {
+               "content": {
+                  "application/json": {
+                     "schema": {
+                        "type": "object",
+                        "properties": {
+                           "name": {
+                              "type": "string"
+                           },
+                           "username": {
+                              "type": "string"
+                           },
+                           "email": {
+                              "type": "string"
+                           },
+                           "password": {
+                              "type": "string"
+                           },
+                           "phone": {
+                              "type": "string"
+                           }
+                        }
+                     }
+                  }
+               }
+            },
+            "responses": {
+               "200": {
+                  "description": "Success Create User",
+                  "content": {
+                     "application/json": {
+                        "schema": {
+                           "type": "object",
+                           "properties": {
+                              "code": {
+                                 "type": "number"
+                              },
+                              "status": {
+                                 "type": "string"
+                              },
+                              "data": {
+                                 "$ref": "#/components/schemas/User"
+                              }
+                           }
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      },
+      "/users/{id}": {
+         "get": {
+            "summary": "Get User by Id",
+            "description": "Get User by Id",
+            "tags": [
+               "User API"
+            ],
+            "security": [
+               {
+                  "UserAuth": []
+               }
+            ],
+            "parameters": [
+               {
+                  "name": "id",
+                  "in": "path",
+                  "description": "User Id"
+               }
+            ],
+            "responses": {
+               "200": {
+                  "description": "Success get User",
+                  "content": {
+                     "application/json": {
+                        "schema": {
+                           "type": "object",
+                           "properties": {
+                              "code": {
+                                 "type": "number"
+                              },
+                              "status": {
+                                 "type": "string"
+                              },
+                              "data": {
+                                 "$ref": "#/components/schemas/User"
+                              }
+                           }
+                        }
+                     }
+                  }
+               }
+            }
+         },
+         "put": {
+            "summary": "Update User by Id",
+            "description": "Update User by Id",
+            "tags": [
+               "User API"
+            ],
+            "parameters": [
+               {
+                  "name": "id",
+                  "in": "path",
+                  "description": "User Id"
+               }
+            ],
+            "security": [
+               {
+                  "UserAuth": []
+               }
+            ],
+            "requestBody": {
+               "content": {
+                  "application/json": {
+                     "schema": {
+                        "type": "object",
+                        "properties": {
+                           "name": {
+                              "type": "string"
+                           },
+                           "username": {
+                              "type": "string"
+                           },
+                           "email": {
+                              "type": "string"
+                           },
+                           "phone": {
+                              "type": "string"
+                           }
+                        }
+                     }
+                  }
+               }
+            },
+            "responses": {
+               "200": {
+                  "description": "Success update User",
+                  "content": {
+                     "application/json": {
+                        "schema": {
+                           "type": "object",
+                           "properties": {
+                              "code": {
+                                 "type": "number"
+                              },
+                              "status": {
+                                 "type": "string"
+                              },
+                              "data": {
+                                 "$ref": "#/components/schemas/User"
+                              }
+                           }
+                        }
+                     }
+                  }
+               }
+            }
+         },
+         "delete": {
+            "summary": "Delete User by Id",
+            "description": "Delete User by Id",
+            "tags": [
+               "User API"
+            ],
+            "parameters": [
+               {
+                  "name": "id",
+                  "in": "path",
+                  "description": "User Id"
+               }
+            ],
+            "security": [
+               {
+                  "UserAuth": []
+               }
+            ],
+            "responses": {
+               "200": {
+                  "description": "Success Delete User",
+                  "content": {
+                     "application/json": {
+                        "schema": {
+                           "type": "object",
+                           "properties": {
+                              "code": {
+                                 "type": "number"
+                              },
+                              "status": {
+                                 "type": "string"
+                              }
+                           }
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      },
+      "/users/{id}/change-password": {
+         "put": {
+            "summary": "Change Password User by Id",
+            "description": "Change Password User by Id",
+            "tags": [
+               "User API"
+            ],
+            "parameters": [
+               {
+                  "name": "id",
+                  "in": "path",
+                  "description": "User Id"
+               }
+            ],
+            "security": [
+               {
+                  "UserAuth": []
+               }
+            ],
+            "requestBody": {
+               "content": {
+                  "application/json": {
+                     "schema": {
+                        "type": "object",
+                        "properties": {
+                           "password": {
+                              "type": "string"
+                           }
+                        }
+                     }
+                  }
+               }
+            },
+            "responses": {
+               "200": {
+                  "description": "Success change password User",
+                  "content": {
+                     "application/json": {
+                        "schema": {
+                           "type": "object",
+                           "properties": {
+                              "code": {
+                                 "type": "number"
+                              },
+                              "status": {
+                                 "type": "string"
+                              }
+                           }
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      }
+   },
+   "components": {
+      "securitySchemes": {
+         "UserAuth": {
+            "type": "apiKey",
+            "in": "header",
+            "name": "X-API-Key",
+            "description": "Authentication for User API"
+         }
+      },
+      "schemas": {
+         "User": {
+            "type": "object",
+            "properties": {
+               "id": {
+                  "type": "number"
+               },
+               "name": {
+                  "type": "string"
+               },
+               "username": {
+                  "type": "string"
+               },
+               "email": {
+                  "type": "string"
+               },
+               "password": {
+                  "type": "string"
+               },
+               "phone": {
+                  "type": "string"
+               },
+               "created_at": {
+                  "type": "string"
+               }
+            }
+         }
+      }
+   }
+}
